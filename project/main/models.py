@@ -45,6 +45,7 @@ class Quest(models.Model):
     position = models.TextField(blank=True)
     description = models.TextField(blank=True)
     epilogue = models.TextField(blank=True)
+    instructions = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
