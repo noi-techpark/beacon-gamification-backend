@@ -44,6 +44,7 @@ class Quest(models.Model):
     name = models.CharField(max_length=300)
     position = models.TextField(blank=True)
     description = models.TextField(blank=True)
+    epilogue = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
