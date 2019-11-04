@@ -15,15 +15,17 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3&p_dlex$9%2s_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp'
+if not DEBUG:
+    with open('/home/secrets/django_secret_key.txt') as f:
+        SECRET_KEY = f.read().strip()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,3 +136,19 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = DEBUG
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+if not DEBUG:
+    with open('/home/secrets/AWS_ACCESS_KEY_ID.txt') as f:
+        AWS_ACCESS_KEY_ID = f.read().strip()
+    with open('/home/secrets/AWS_SECRET_ACCESS_KEY.txt') as f:
+        AWS_SECRET_ACCESS_KEY = f.read().strip()
+else:
+    with open(os.path.join(BASE_DIR, '../../secrets/beacon-backend/AWS_ACCESS_KEY_ID.txt')) as f:
+        AWS_ACCESS_KEY_ID = f.read().strip()
+    with open(os.path.join(BASE_DIR, '../../secrets/beacon-backend/AWS_SECRET_ACCESS_KEY.txt')) as f:
+        AWS_SECRET_ACCESS_KEY = f.read().strip()
+
+AWS_STORAGE_BUCKET_NAME = 'beacon-app-bucket'
