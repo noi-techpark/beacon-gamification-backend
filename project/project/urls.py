@@ -18,6 +18,8 @@ urlpatterns = [
          users.UserListView.as_view(), name='user-list'),
     path('api/v1/users/add-points/',
          users.AddPoints.as_view(), name='user-add-points'),
+    path('api/v1/users/modify-points/',
+         users.AddPoints.as_view(), name='user-modify-points'),
 
     # beacons
     path('api/v1/beacons/<int:pk>/',

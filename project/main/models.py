@@ -62,6 +62,7 @@ class QuestStep(models.Model):
     name = models.CharField(max_length=300)
     properties = models.TextField(blank=True)
     value_points = models.IntegerField(null=True)
+    value_points_error = models.IntegerField(null=True)
     quest_index = models.IntegerField(null=True)
     type = models.CharField(max_length=20, blank=True)
     instructions = models.TextField()
