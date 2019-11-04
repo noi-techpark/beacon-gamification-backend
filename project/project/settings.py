@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'main'
+    'main',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +139,6 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = DEBUG
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 if not DEBUG:
     with open('/home/secrets/AWS_ACCESS_KEY_ID.txt') as f:

@@ -46,6 +46,10 @@ class Quest(models.Model):
     description = models.TextField(blank=True)
     epilogue = models.TextField(blank=True)
     instructions = models.TextField(blank=True)
+    image = models.FileField(
+        upload_to='quests',
+        blank=True
+    )
 
     def __str__(self):
         return self.name
