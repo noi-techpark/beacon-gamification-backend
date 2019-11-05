@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  app:
+    image: ${DOCKER_IMAGE_APP}:${DOCKER_TAG_APP}
+    restart: unless-stopped
+    env_file: .env
+    command: python /code/project/manage.py runserver
+    ports:
+      - "${DOCKER_SERVER_PORT}:8000"

@@ -64,6 +64,44 @@ Use the standard development server with `python project/manage.py runserver`.
 
 ToDo: A detailed description about how the application must be deployed.
 
+## Docker environment
+
+For the project a Docker environment is already prepared and ready to use with all necessary prerequisites.
+
+These Docker containers are the same as used by the continuous integration servers.
+
+### Installation
+
+Install [Docker](https://docs.docker.com/install/) (with Docker Compose) locally on your machine.
+
+### Start and stop the containers
+
+Before start working you have to start the Docker containers:
+
+```
+docker-compose up --build --detach
+```
+
+After finished working you can stop the Docker containers:
+
+```
+docker-compose stop
+```
+
+### Running commands inside the container
+
+When the containers are running, you can execute any command inside the environment. Just replace the dots `...` in the following example with the command you wish to execute:
+
+```bash
+docker-compose exec app /bin/bash -c "..."
+```
+
+Some examples are:
+
+```bash
+docker-compose exec app /bin/bash -c "python ..."
+```
+
 ## Information
 
 ### Support
@@ -81,6 +119,8 @@ If you'd like to contribute, please follow the following instructions:
 - Make sure the tests are passing.
 
 - Create a pull request against the `development` branch.
+
+A more detailed description can be found here: [https://github.com/noi-techpark/documentation/blob/master/contributors.md](https://github.com/noi-techpark/documentation/blob/master/contributors.md).
 
 ### Documentation
 

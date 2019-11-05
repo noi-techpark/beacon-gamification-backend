@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+      target: dev
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./:/code
+    command: python /code/project/manage.py runserver
+    ports:
+      - "${DOCKER_SERVER_PORT}:8000"
