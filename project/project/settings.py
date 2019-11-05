@@ -27,7 +27,7 @@ else:
     SECRET_KEY = '3&p_dlex$9%2s_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp'
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '157.230.18.122']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -136,7 +136,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ORIGIN_ALLOW_ALL = DEBUG
+CORS_ORIGIN_ALLOW_ALL = True
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'beacon-app-bucket'
