@@ -27,7 +27,7 @@ else:
     SECRET_KEY = '3&p_dlex$9%2s_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp'
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '157.230.18.122']
 
 
 # Application definition
