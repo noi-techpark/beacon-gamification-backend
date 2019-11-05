@@ -19,6 +19,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 print('########')
 print(DEBUG)
+print(os.environ.get('DJANGO_DEBUG', ''))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
