@@ -70,6 +70,10 @@ class QuestStep(models.Model):
     quest_index = models.IntegerField(null=True)
     type = models.CharField(max_length=20, blank=True)
     instructions = models.TextField()
+    image = models.FileField(
+        upload_to='quests_steps',
+        blank=True
+    )
 
     def __str__(self):
         return self.name

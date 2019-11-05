@@ -17,10 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-print('########')
-print(DEBUG)
-print(os.environ.get('DJANGO_DEBUG', ''))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -155,3 +151,5 @@ else:
         AWS_ACCESS_KEY_ID = f.read().strip()
     with open(os.path.join(BASE_DIR, '../../secrets/beacon-backend/AWS_SECRET_ACCESS_KEY.txt')) as f:
         AWS_SECRET_ACCESS_KEY = f.read().strip()
+
+AWS_DEFAULT_ACL = None
