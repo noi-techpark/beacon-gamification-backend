@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from main.views import auth, beacons, quest_finder, quests, users
+from main.views import auth, beacons, quest_finder, quests, users, images
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,6 +41,10 @@ urlpatterns = [
          quests.QuestStepDetailsView.as_view(), name='quest-step-details'),
     path('api/v1/quest-steps/',
          quests.QuestStepListView.as_view(), name='quest-step'),
+
+    # utils
+    path('api/v1/upload-image/',
+         images.UploadImage.as_view(), name='upload_image'),
 
     # Starting from a beacon id you will obtain every quest that use this beacon
     path('api/v1/quest-finder/',
