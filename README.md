@@ -21,6 +21,10 @@ To build the project, the following prerequisites must be met:
 
 - Python 3.6 and up
 
+### Other used technologies
+
+- SQLite.
+
 ### Source code
 
 Get a copy of the repository:
