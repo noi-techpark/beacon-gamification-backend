@@ -10,7 +10,7 @@ from ..utils.permissions import CustomDjangoModelPermissions
 
 class QuestListView(ListCreateAPIView):
     permission_classes = (CustomDjangoModelPermissions,)
-    queryset = Quest.objects.all()
+    queryset = Quest.objects.all().order_by('quest_index')
     serializer_class = quests_serializer.QuestSerializerSteps
 
 

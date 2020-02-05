@@ -44,6 +44,13 @@ class Quest(models.Model):
     name = models.CharField(max_length=300)
     position = models.TextField(blank=True)
     description = models.TextField(blank=True)
+    epilogue = models.TextField(blank=True)
+    instructions = models.TextField(blank=True)
+    quest_index = models.IntegerField(null=True)
+    image = models.FileField(
+        upload_to='quests',
+        blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -60,9 +67,14 @@ class QuestStep(models.Model):
     name = models.CharField(max_length=300)
     properties = models.TextField(blank=True)
     value_points = models.IntegerField(null=True)
+    value_points_error = models.IntegerField(null=True)
     quest_index = models.IntegerField(null=True)
     type = models.CharField(max_length=20, blank=True)
     instructions = models.TextField()
+    image = models.FileField(
+        upload_to='quests_steps',
+        blank=True
+    )
 
     def __str__(self):
         return self.name
