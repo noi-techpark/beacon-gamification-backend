@@ -72,7 +72,7 @@ ToDo: A detailed description about how the application must be deployed.
 
 ### Support
 
-ToDo: For support, please contact [info@opendatahub.bz.it](mailto:info@opendatahub.bz.it).
+For support, please contact [info@davinci.bz.it](mailto:info@davinci.bz.it).
 
 ### Contributing
 

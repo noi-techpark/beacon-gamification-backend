@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +23,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-if not DEBUG:
-    with open('/home/secrets/django_secret_key.txt') as f:
-        SECRET_KEY = f.read().strip()
-else:
-    SECRET_KEY = '3&p_dlex$9%2s_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp'
-
+SECRET_KEY = os.getenv('SECRET_KEY', '3&p_dlex$9%2s_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp')
 
 ALLOWED_HOSTS = ['*']
 
@@ -125,8 +123,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/noi-beacon-backend/static/'
+STATIC_URL = os.getenv('STATIC_URL', '/static/')
+STATIC_ROOT = os.getenv('STATIC_ROOT', '/home/noi-beacon-backend/static/')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -139,19 +137,7 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'beacon-app-bucket'
-AWS_S3_SIGNATURE_VERSION = 's3v4'
-AWS_S3_REGION_NAME = 'eu-central-1'
-
-if not DEBUG:
-    with open('/home/secrets/AWS_ACCESS_KEY_ID.txt') as f:
-        AWS_ACCESS_KEY_ID = f.read().strip()
-    with open('/home/secrets/AWS_SECRET_ACCESS_KEY.txt') as f:
-        AWS_SECRET_ACCESS_KEY = f.read().strip()
-else:
-    with open(os.path.join(BASE_DIR, '../../secrets/beacon-backend/AWS_ACCESS_KEY_ID.txt')) as f:
-        AWS_ACCESS_KEY_ID = f.read().strip()
-    with open(os.path.join(BASE_DIR, '../../secrets/beacon-backend/AWS_SECRET_ACCESS_KEY.txt')) as f:
-        AWS_SECRET_ACCESS_KEY = f.read().strip()
-
-AWS_DEFAULT_ACL = None
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_S3_REGION_NAME = os.getenv('S3_REGION')
+AWS_S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
