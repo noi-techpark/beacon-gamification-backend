@@ -61,8 +61,11 @@ pipeline {
                     sh """
 					    ssh -o StrictHostKeyChecking=no ${DOCKER_SERVER_IP} bash -euc "'
 							mkdir -p ${DOCKER_SERVER_DIRECTORY}
+							mkdir -p ${DOCKER_SERVER_DIRECTORY}/shared
+							touch ${DOCKER_SERVER_DIRECTORY}/shared/db.sqlite3
 							ls -1t ${DOCKER_SERVER_DIRECTORY}/releases/ | tail -n +10 | grep -v `readlink -f ${DOCKER_SERVER_DIRECTORY}/current | xargs basename --` -- | xargs -r printf \"${DOCKER_SERVER_DIRECTORY}/releases/%s\\n\" | xargs -r rm -rf --
 							mkdir -p ${DOCKER_SERVER_DIRECTORY}/releases/${BUILD_NUMBER}
+							ln -sfn ${DOCKER_SERVER_DIRECTORY}/shared/db.sqlite3 ${DOCKER_SERVER_DIRECTORY}/releases/${BUILD_NUMBER}/db.sqlite3
 						'"
 
 						scp -o StrictHostKeyChecking=no docker-compose.run.yml ${DOCKER_SERVER_IP}:${DOCKER_SERVER_DIRECTORY}/releases/${BUILD_NUMBER}/docker-compose.yml
