@@ -2,7 +2,7 @@ version: "3.4"
 services:
   app:
     image: ${DOCKER_IMAGE}:${DOCKER_TAG}
-    command: "python project/manage.py runserver"
+    command: "python3 project/manage.py runserver"
     restart: unless-stopped
     ports:
       - "1011:8000"
