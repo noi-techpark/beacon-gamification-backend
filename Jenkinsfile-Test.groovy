@@ -12,8 +12,8 @@ pipeline {
 
 		DJANGO_DEBUG = 'False'
 		SECRET_KEY = credentials('gamification-api-test-secrect-key')
-		AWS_ACCESS_KEY_ID = credentials('gamification-api-test-aws-access-key-id')
-		AWS_SECRET_ACCESS_KEY = credentials('gamification-api-test-aws-secrect-access-key')
+		S3_ACCESS_KEY_ID = credentials('gamification-api-test-aws-access-key-id')
+		S3_SECRET_ACCESS_KEY = credentials('gamification-api-test-aws-secrect-access-key')
 		S3_REGION = 'eu-west-1'
 		S3_BUCKET_NAME = 'test-gamification-api'
     }
@@ -30,8 +30,8 @@ pipeline {
 
 					echo 'DJANGO_DEBUG=${DJANGO_DEBUG}' >> .env
 					echo 'SECRET_KEY=${SECRET_KEY}' >> .env
-					echo 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}' >> .env
-					echo 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}' >> .env
+					echo 'AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}' >> .env
+					echo 'AWS_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}' >> .env
 					echo 'S3_REGION=${S3_REGION}' >> .env
 					echo 'S3_BUCKET_NAME=${S3_BUCKET_NAME}' >> .env
 				"""
