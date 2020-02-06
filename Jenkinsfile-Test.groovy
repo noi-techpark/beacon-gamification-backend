@@ -11,9 +11,9 @@ pipeline {
 		DOCKER_TAG = "test-$BUILD_NUMBER"
 
 		DJANGO_DEBUG = 'False'
-		SECRET_KEY = credentials('gamification-api-test-secrect-key')
+		SECRET_KEY = credentials('gamification-api-test-secret-key')
 		S3_ACCESS_KEY_ID = credentials('gamification-api-test-aws-access-key-id')
-		S3_SECRET_ACCESS_KEY = credentials('gamification-api-test-aws-secrect-access-key')
+		S3_SECRET_ACCESS_KEY = credentials('gamification-api-test-aws-secret-access-key')
 		S3_REGION = 'eu-west-1'
 		S3_BUCKET_NAME = 'test-gamification-api'
     }
