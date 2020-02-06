@@ -11,9 +11,9 @@ pipeline {
 		DOCKER_TAG = "prod-$BUILD_NUMBER"
 
 		DJANGO_DEBUG = 'False'
-		SECRET_KEY = credentials('gamification-api-prod-secret-key')
-		S3_ACCESS_KEY_ID = credentials('gamification-api-prod-aws-access-key-id')
-		S3_SECRET_ACCESS_KEY = credentials('gamification-api-prod-aws-secret-access-key')
+		SECRET_KEY = credentials('beacon-gamification-api-prod-secret-key')
+		S3_ACCESS_KEY_ID = credentials('beacon-gamification-api-prod-aws-access-key-id')
+		S3_SECRET_ACCESS_KEY = credentials('beacon-gamification-api-prod-aws-secret-access-key')
 		S3_REGION = 'eu-west-1'
 		S3_BUCKET_NAME = 'prod-gamification-api'
     }
