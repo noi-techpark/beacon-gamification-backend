@@ -10,7 +10,7 @@ pipeline {
 		DOCKER_IMAGE = '755952719952.dkr.ecr.eu-west-1.amazonaws.com/gamification-api'
 		DOCKER_TAG = "test-$BUILD_NUMBER"
 
-		DJANGO_DEBUG = 'True'
+		DJANGO_DEBUG = 'False'
 		SECRET_KEY = credentials('beacon-gamification-api-test-secret-key')
 		S3_ACCESS_KEY_ID = credentials('beacon-gamification-api-test-aws-access-key-id')
 		S3_SECRET_ACCESS_KEY = credentials('beacon-gamification-api-test-aws-secret-access-key')
