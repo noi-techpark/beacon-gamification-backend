@@ -23,7 +23,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-SECRET_KEY = os.getenv('SECRET_KEY', '3&p_dlex$9%2s_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp')
+SECRET_KEY = os.getenv('SECRET_KEY', '3&p_dlex$9_lq-9vq^+3#v4_i52lcysmg0b(hd1dj3j=adp')
 
 ALLOWED_HOSTS = ['*']
 
