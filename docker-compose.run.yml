@@ -5,6 +5,6 @@ services:
     command: "python project/manage.py runserver 0.0.0.0:8000"
     restart: unless-stopped
     volumes:
-      - ./db.sqlite3:/code/db.sqlite3
+      - ./db.sqlite3:/code/project/db.sqlite3
     ports:
       - "1011:8000"
