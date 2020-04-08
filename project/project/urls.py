@@ -3,10 +3,7 @@ from django.urls import path
 
 from main.views import auth, beacons, quest_finder, quests, users, images
 
-from . import test
-
 urlpatterns = [
-    path('test', test.index),
     path('admin/', admin.site.urls),
     path('api/v1/api-token-auth/',
          auth.CustomObtainAuthToken.as_view(), name='api_token_auth'),
