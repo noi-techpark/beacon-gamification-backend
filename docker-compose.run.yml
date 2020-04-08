@@ -5,5 +5,12 @@ services:
     restart: unless-stopped
     volumes:
       - ./db.sqlite3:/code/project/db.sqlite3
+    environment:
+      DJANGO_DEBUG: ${DJANGO_DEBUG}
+      SECRET_KEY: ${SECRET_KEY}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      S3_REGION: ${S3_REGION}
+      S3_BUCKET_NAME: ${S3_BUCKET_NAME}
     ports:
       - "1011:8000"
