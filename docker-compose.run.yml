@@ -13,4 +13,4 @@ services:
       S3_REGION: ${S3_REGION}
       S3_BUCKET_NAME: ${S3_BUCKET_NAME}
     ports:
-      - "1011:8000"
+      - "1002:8000"
