@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: infrastructure/docker/Dockerfile
       target: dev
     environment:
       DJANGO_DEBUG: ${DJANGO_DEBUG}
