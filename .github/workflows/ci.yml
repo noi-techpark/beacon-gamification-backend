@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker-compose --no-ansi build --pull
+      run: docker-compose --ansi never build --pull
     - name: Run the Docker image
-      run: docker-compose --no-ansi run --rm --no-deps app python --version
+      run: docker-compose --ansi never run --rm --no-deps app python --version
