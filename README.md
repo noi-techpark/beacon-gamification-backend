@@ -1,5 +1,7 @@
 # beacon-gamification-backend
 
+[![CI beacon-gamification-backend](https://github.com/noi-techpark/beacon-gamification-backend/actions/workflows/ci.yml/badge.svg)](https://github.com/noi-techpark/beacon-gamification-backend/actions/workflows/ci.yml)
+
 Backend code for the beacon project.
 
 ## Table of contents
