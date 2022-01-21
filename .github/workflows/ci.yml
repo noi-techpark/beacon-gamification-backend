@@ -1,15 +1,9 @@
-name: CI beacon-gamification-backend
+name: CI
 
-on:
-  push:
-    branches: [ master, development ]
-  pull_request:
-    branches: [ master, development ]
+on: push
 
 jobs:
-
   build:
-
     runs-on: ubuntu-20.04
 
     steps:
