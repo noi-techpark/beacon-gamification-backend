@@ -33,8 +33,8 @@ jobs:
       - name: Create .env file
         uses: noi-techpark/github-actions/env-file@v2
         env:
-          X_DOCKER_IMAGE: $DOCKER_IMAGE
-          X_DOCKER_TAG: $DOCKER_TAG
+          X_DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
+          X_DOCKER_TAG: ${{ env.DOCKER_TAG }}
           X_DJANGO_DEBUG: 'False'
           X_SECRET_KEY: ${{ secrets.SECRET_KEY_TEST }}
           X_AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID_TEST }}
@@ -69,8 +69,8 @@ jobs:
       - name: Create .env file
         uses: noi-techpark/github-actions/env-file@v2
         env:
-          X_DOCKER_IMAGE: $DOCKER_IMAGE
-          X_DOCKER_TAG: $DOCKER_TAG
+          X_DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
+          X_DOCKER_TAG: ${{ env.DOCKER_TAG }}
           X_DJANGO_DEBUG: 'False'
           X_SECRET_KEY: ${{ secrets.SECRET_KEY_PROD }}
           X_AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID_PROD }}
