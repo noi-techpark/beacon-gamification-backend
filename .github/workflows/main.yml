@@ -1,0 +1,90 @@
+name: CI/CD
+
+on:
+  push:
+  pull_request:
+
+env:
+  PROJECT_NAME: gamification-api
+  DOCKER_IMAGE: ghcr.io/${{ github.repository }}/${{ github.event.repository.name }}
+  DOCKER_TAG: ${{ github.sha }}
+
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker-compose --ansi never build --pull
+    - name: Run the Docker image
+      run: docker-compose --ansi never run --rm --no-deps app python --version
+
+  deploy-test:
+    runs-on: ubuntu-20.04
+    if: github.ref == 'refs/heads/main'
+    needs: test
+    concurrency: deploy-test
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Create .env file
+        uses: noi-techpark/github-actions/env-file@v2
+        env:
+          X_DJANGO_DEBUG: 'False'
+          X_SECRET_KEY: ${{ secrets.SECRET_KEY_TEST }}
+          X_S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID_TEST }}
+          X_S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY_TEST }}
+          X_S3_REGION: 'eu-west-1'
+          X_S3_BUCKET_NAME: 'test-gamification-api'
+
+      - name: Build and push 
+        uses: noi-techpark/github-actions/docker-build-and-push@v2
+        with:
+          docker-username: ${{ github.actor }}
+          docker-password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy application
+        uses: noi-techpark/github-actions/docker-deploy@v2
+        with:
+          hosts: 'test'
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          docker-username: 'noi-techpark-bot'
+          docker-password: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          project-name: ${{ env.PROJECT_NAME }}
+
+  deploy-prod:
+    runs-on: ubuntu-20.04
+    if: github.ref == 'refs/heads/prod'
+    needs: test
+    concurrency: deploy-prod
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Create .env file
+        uses: noi-techpark/github-actions/env-file@v2
+        env:
+          X_DJANGO_DEBUG: 'False'
+          X_SECRET_KEY: ${{ secrets.SECRET_KEY_PROD }}
+          X_S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID_PROD }}
+          X_S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY_PROD }}
+          X_S3_REGION: 'eu-west-1'
+          X_S3_BUCKET_NAME: 'prod-gamification-api'
+
+      - name: Build and push 
+        uses: noi-techpark/github-actions/docker-build-and-push@v2
+        with:
+          docker-username: ${{ github.actor }}
+          docker-password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy application
+        uses: noi-techpark/github-actions/docker-deploy@v2
+        with:
+          hosts: 'prod'
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          docker-username: 'noi-techpark-bot'
+          docker-password: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          project-name: ${{ env.PROJECT_NAME }}
