@@ -25,7 +25,7 @@ pytz==2019.2
 rope==0.14.0
 s3transfer==0.3.3
 six==1.10.0
-sqlparse==0.3.0
+sqlparse==0.4.4
 stevedore==1.25.0
 typed-ast==1.4.0
 urllib3==1.25.6
